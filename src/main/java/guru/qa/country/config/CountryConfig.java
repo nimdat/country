@@ -11,7 +11,6 @@ public class CountryConfig {
 
     @Bean
     public ObjectMapper objectMapper() {
-
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDateFormat(df);
