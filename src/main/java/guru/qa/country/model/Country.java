@@ -1,8 +1,29 @@
 package guru.qa.country.model;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import guru.qa.country.data.CountryEntity;
 
-public record Country(String name,
-                      String code,
-                      Date date) {
+import java.util.Date;
+import java.util.UUID;
+
+public record Country(
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonProperty("id")
+        UUID id,
+        @JsonProperty("name")
+        String name,
+        @JsonProperty("code")
+        String code,
+        @JsonProperty("date")
+        Date date) {
+
+    public static Country fromEntity(CountryEntity countryEntity) {
+        return new Country(
+                countryEntity.getId(),
+                countryEntity.getName(),
+                countryEntity.getCode(),
+                countryEntity.getDate()
+        );
+    }
 }
